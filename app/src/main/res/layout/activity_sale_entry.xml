@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SaleEntry">
+
+    <EditText
+        android:id="@+id/cid"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:ems="10"
+        android:hint="Customer ID"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/FindButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/FindButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:text="Find Customer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cid"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/milk"
+        android:layout_width="179dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toTopOf="@+id/saleEntry"
+        app:layout_constraintEnd_toStartOf="@+id/qty"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Cname" />
+
+    <EditText
+        android:id="@+id/qty"
+        android:layout_width="68dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="number|numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/milk"
+        app:layout_constraintTop_toBottomOf="@+id/Cname"
+        app:layout_constraintVertical_bias="0.27" />
+
+    <TextView
+        android:id="@+id/Cname"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="76dp"
+        android:text="Customer Name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cid" />
+
+    <Button
+        android:id="@+id/saleEntry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make Entry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/milk" />
+
+    <TextView
+        android:id="@+id/SaleEntry_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Sale Entry"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/FindButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/customerID"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="83dp"
+        android:text="Customer ID"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Cname"
+        app:layout_constraintTop_toBottomOf="@+id/FindButton" />
+</android.support.constraint.ConstraintLayout>

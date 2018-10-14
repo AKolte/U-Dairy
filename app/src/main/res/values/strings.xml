@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TestProject</string>
+
+    <string-array name="Milk_brands">
+        <item>Gokul</item>
+        <item>Katraj</item>
+        <item>Chitale</item>
+        <item>Patanjali</item>
+        <item>Mother Dairy</item>
+        <item>Nestle</item>
+        <item>AMUL</item>
+    </string-array>
+</resources>
