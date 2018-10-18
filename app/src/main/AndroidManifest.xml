@@ -20,7 +20,11 @@
         <activity android:name=".FindUser" />
         <activity android:name=".SaleEntry" />
         <activity android:name=".Purchase" />
-        <activity android:name=".tableActivity"></activity>
+        <activity android:name=".tableActivity" />
+        <activity android:name=".Payment" />
+        <activity android:name=".Stock" />
+        <activity android:name=".MilkStock" />
+      
     </application>
 
 </manifest>

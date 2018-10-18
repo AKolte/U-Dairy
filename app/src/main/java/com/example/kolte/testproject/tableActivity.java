@@ -37,7 +37,7 @@ public class tableActivity extends Activity {
 
                 if (c.getCount() > 0) {
                     c.moveToFirst();
-                    String tablename = c.getString(nameInd) + cid.getText().toString();
+                    String tablename = "T" + cid.getText().toString();
                     Cursor purCursor = db.PurchaseTable(tablename);
 
                     if (purCursor.getCount() > 0) {
@@ -71,7 +71,7 @@ public class tableActivity extends Activity {
 
             // Creation row
             TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
 
             // Creation textView
             TextView milk = new TextView(this);
@@ -81,13 +81,13 @@ public class tableActivity extends Activity {
 
 
             milk.setText(PurCur.getString(milkInd));
-            milk.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            milk.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
 
             qty.setText(PurCur.getString(qtyInd));
-            qty.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            qty.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
 
             amt.setText(PurCur.getString(amtInd));
-            amt.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            amt.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
 
             tableRow.addView(milk);
             tableRow.addView(qty);

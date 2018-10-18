@@ -19,6 +19,7 @@ public class Purchase extends AppCompatActivity {
          final EditText cid = (EditText) findViewById(R.id.cid);
         final Button find =  (Button) findViewById(R.id.FindPurchase);
        final TextView disp = (TextView) findViewById(R.id.Disp);
+       final TextView total = (TextView) findViewById(R.id.total);
         final DatabaseHelper db = new DatabaseHelper(this);
 
 
@@ -27,22 +28,26 @@ public class Purchase extends AppCompatActivity {
             public void onClick(View v) {
 
                 Cursor c = db.findCustomer(cid.getText().toString());
-                Integer nameInd, amtInd, milkInd, qtyInd;
+                Integer nameInd, amtInd, milkInd, qtyInd,balInd;
                 nameInd = c.getColumnIndex("cname");
-
-
 
 
                 if (c.getCount() > 0) {
                     c.moveToFirst();
-                    String tablename= c.getString(nameInd)+cid.getText().toString();
+                    String tablename= "T"+cid.getText().toString();
                     Cursor purCursor = db.PurchaseTable(tablename);
+
+                    Float tot=  db.total(cid.getText().toString());
+                    total.setText(tot.toString());
 
                     if(purCursor.getCount()>0){
                         milkInd = purCursor.getColumnIndex("Milk");
                         qtyInd = purCursor.getColumnIndex("qty");
                         amtInd = purCursor.getColumnIndex("Amount");
+
                         String PurTable="";
+
+
 
                         for (purCursor.moveToFirst(); !purCursor.isAfterLast(); purCursor.moveToNext()) {
                              PurTable=PurTable+purCursor.getString(milkInd) + " " + purCursor.getString(qtyInd) + " " + purCursor.getString(amtInd)+"\n";
@@ -52,7 +57,6 @@ public class Purchase extends AppCompatActivity {
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
-
                     }
                 }
 

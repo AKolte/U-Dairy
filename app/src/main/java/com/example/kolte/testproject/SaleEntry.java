@@ -1,5 +1,6 @@
 package com.example.kolte.testproject;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.icu.text.SimpleDateFormat;
 import android.support.v7.app.AppCompatActivity;
@@ -98,17 +99,18 @@ public class SaleEntry extends AppCompatActivity {
               qtyS = qty.getText().toString();
               milkS = pmilk.getSelectedItem().toString();
 
-              Float amt = Float.valueOf(qty.getText().toString());
-              amt= amt*50;
+              String quantity = qty.getText().toString();
 
-              //Toast.makeText(getApplicationContext(),amt.toString(),Toast.LENGTH_SHORT).show();
-                String quantity = qty.getText().toString();
-                String Amount = amt.toString();
-                String tablename = cnameS+cidS;
+                String tablename = "T"+cidS;
 
-                if(db.SaleEntry(cidS,tablename,milkS,quantity,Amount))
-                    Toast.makeText(getApplicationContext(),"Sale Entry Sucessful!!!",Toast.LENGTH_SHORT).show();
-                else{
+                if(db.SaleEntry(cidS,tablename,milkS,quantity)) {
+                    db.updateStock(milkS,quantity);
+                    Toast.makeText(getApplicationContext(), "Sale Entry Sucessful!!!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SaleEntry.this,MainActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
+                    else{
                     Toast.makeText(getApplicationContext(),"Something went wronng :(",Toast.LENGTH_SHORT).show();
 
                 }

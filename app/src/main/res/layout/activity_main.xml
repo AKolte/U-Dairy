@@ -4,54 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/backgroung"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="227dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/logo_burned"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
         android:text="Udairy"
+        android:textColor="@android:color/holo_blue_bright"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableLeft="@drawable/ic_person_add_black_24dp"
+        android:text=" Register"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Login"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find Customer Details"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.618"
-        app:layout_constraintStart_toEndOf="@+id/Register"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginEnd="2dp"
+        android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
+        android:text=" Payments"
+        app:layout_constraintBaseline_toBaselineOf="@+id/PurchaseTableButton"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/Sale_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sale Entry"
+        android:layout_marginBottom="213dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="213dp"
+        android:drawableLeft="@drawable/ic_local_grocery_store_black_24dp"
+        android:text=" Sale Entry"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PurchaseTableButton"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Register"
-        app:layout_constraintVertical_bias="0.563" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -64,26 +78,35 @@
         android:id="@+id/PurchaseTableButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="89dp"
-        android:text="View Customer Purchases"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/Sale_entry"
-        app:layout_constraintTop_toBottomOf="@+id/Login" />
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="40dp"
+        android:drawableLeft="@drawable/ic_history_black_24dp"
+        android:text=" Purchase History"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sale_entry" />
 
     <Button
-        android:id="@+id/TableButton"
+        android:id="@+id/stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
-        android:layout_marginEnd="261dp"
-        android:layout_marginStart="35dp"
-        android:text="Tables"
-        app:layout_constraintBottom_toTopOf="@+id/Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline"
-        app:layout_constraintVertical_bias="0.669" />
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="23dp"
+        android:drawableLeft="@drawable/ic_kitchen_black_24dp"
+        android:text=" Stocks"
+        app:layout_constraintBottom_toTopOf="@+id/Login"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:layout_marginStart="36dp"
+        android:drawableLeft="@drawable/ic_settings_black_24dp"
+        android:text=" Settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
