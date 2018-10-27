@@ -24,7 +24,11 @@
         <activity android:name=".Payment" />
         <activity android:name=".Stock" />
         <activity android:name=".MilkStock" />
-      
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

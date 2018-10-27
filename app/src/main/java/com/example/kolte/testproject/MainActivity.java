@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -14,25 +16,36 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    Button register, login, sale_entry, purchase,table,stock,settings;
+    Button register, login, sale_entry, purchase, table, stock, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // table = (Button) findViewById(R.id.TableButton);
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        // table = (Button) findViewById(R.id.TableButton);
         register = (Button) findViewById(R.id.Register);
         login = (Button) findViewById(R.id.Login);
         sale_entry = (Button) findViewById(R.id.Sale_entry);
         purchase = (Button) findViewById(R.id.PurchaseTableButton);
         stock = (Button) findViewById(R.id.stock);
-        settings = (Button)findViewById(R.id.settings);
+        settings = (Button) findViewById(R.id.settings);
+        TextView stockBanner = (TextView) findViewById(R.id.StockBanner);
+        TextView AmountBanner = (TextView) findViewById(R.id.amountBanner);
+
+
+        String Banner = "Remaining milk Stock is "+db.totalStock()+" Litres";
+        stockBanner.setText(Banner);
+
+        Banner = "Total pending Bill of all Customers is ₹"+db.shopTotal();
+        AmountBanner.setText(Banner);
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,MilkStock.class);
+                Intent i = new Intent(MainActivity.this, MilkStock.class);
                 startActivity(i);
             }
         });
@@ -40,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         stock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,Stock.class);
+                Intent i = new Intent(MainActivity.this, Stock.class);
                 startActivity(i);
             }
         });
@@ -76,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
 
     }

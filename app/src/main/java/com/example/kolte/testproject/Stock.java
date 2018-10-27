@@ -42,7 +42,6 @@ public class Stock extends AppCompatActivity {
         final EditText qty = (EditText) findViewById(R.id.qty);
 
 
-
         final DatabaseHelper db = new DatabaseHelper(this);
         String stock = db.totalStock();
 
@@ -62,8 +61,8 @@ public class Stock extends AppCompatActivity {
         newAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.addStock(pmilk.getSelectedItem().toString(),qty.getText().toString());
-                Toast.makeText(getApplicationContext(),"Stock Updated!",Toast.LENGTH_SHORT).show();
+                db.addStock(pmilk.getSelectedItem().toString(), qty.getText().toString());
+                Toast.makeText(getApplicationContext(), "Stock Updated!", Toast.LENGTH_SHORT).show();
                 newAdd.setVisibility(View.INVISIBLE);
                 qty.setVisibility(View.INVISIBLE);
                 pmilk.setVisibility(View.INVISIBLE);
@@ -71,7 +70,6 @@ public class Stock extends AppCompatActivity {
                 update();
             }
         });
-
 
 
         ListView resultsListView = (ListView) findViewById(R.id.results_listview);
@@ -103,7 +101,8 @@ public class Stock extends AppCompatActivity {
         resultsListView.setAdapter(adapter1);
 
     }
-    public void update(){
+
+    public void update() {
         DatabaseHelper db = new DatabaseHelper(this);
 
         ListView resultsListView = (ListView) findViewById(R.id.results_listview);

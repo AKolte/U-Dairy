@@ -18,11 +18,10 @@ import java.util.Date;
 
 public class SaleEntry extends AppCompatActivity {
 
-    EditText cid,qty;
-    TextView cname,customerID;
+    EditText cid, qty;
+    TextView cname, customerID;
     DatabaseHelper db;
-    Button find,makeSaleEntry;
-
+    Button find, makeSaleEntry;
 
 
     @Override
@@ -39,7 +38,7 @@ public class SaleEntry extends AppCompatActivity {
         pmilk.setAdapter(adapter);
 
         cid = (EditText) findViewById(R.id.cid);
-        qty= (EditText) findViewById(R.id.qty);
+        qty = (EditText) findViewById(R.id.qty);
 
         customerID = (TextView) findViewById(R.id.customerID);
         cname = (TextView) findViewById(R.id.Cname);
@@ -57,8 +56,8 @@ public class SaleEntry extends AppCompatActivity {
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(cid.getText().toString().isEmpty())
-                    Toast.makeText(getApplicationContext(),"Enter Customer ID",Toast.LENGTH_SHORT).show();
+                if (cid.getText().toString().isEmpty())
+                    Toast.makeText(getApplicationContext(), "Enter Customer ID", Toast.LENGTH_SHORT).show();
                 else {
                     Cursor c = db.findCustomer(cid.getText().toString());
                     Integer nameInd, cidInd, milkInd, qtyInd;
@@ -81,9 +80,8 @@ public class SaleEntry extends AppCompatActivity {
                             customerID.setText(c.getString(cidInd));
                             pmilk.setSelection(getIndex(pmilk, c.getString(milkInd)));
                         }
-                    }
-                    else
-                        Toast.makeText(getApplicationContext(),"No Customer found :(",Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(getApplicationContext(), "No Customer found :(", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -92,39 +90,39 @@ public class SaleEntry extends AppCompatActivity {
         makeSaleEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              String cnameS,cidS,qtyS,milkS;
+                String cnameS, cidS, qtyS, milkS;
 
-              cnameS = cname.getText().toString();
-              cidS = customerID.getText().toString();
-              qtyS = qty.getText().toString();
-              milkS = pmilk.getSelectedItem().toString();
+                cnameS = cname.getText().toString();
+                cidS = customerID.getText().toString();
+                qtyS = qty.getText().toString();
+                milkS = pmilk.getSelectedItem().toString();
 
-              String quantity = qty.getText().toString();
+                String quantity = qty.getText().toString();
 
-                String tablename = "T"+cidS;
+                String tablename = "T" + cidS;
 
-                if(db.SaleEntry(cidS,tablename,milkS,quantity)) {
-                    db.updateStock(milkS,quantity);
+                Date c = Calendar.getInstance().getTime();
+
+                java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                String formattedDate = df.format(c);
+
+                if (db.SaleEntry(formattedDate, cidS, tablename, milkS, quantity)) {
+                    db.updateStock(milkS, quantity);
                     Toast.makeText(getApplicationContext(), "Sale Entry Sucessful!!!", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(SaleEntry.this,MainActivity.class);
+                    Intent i = new Intent(SaleEntry.this, MainActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
-                }
-                    else{
-                    Toast.makeText(getApplicationContext(),"Something went wronng :(",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Something went wronng :(", Toast.LENGTH_SHORT).show();
 
                 }
-                cname.setText("");
-                cid.setText("");
-                customerID.setText("");
-                qty.setText("");
-                pmilk.setSelection(1,true);
+
             }
         });
 
     }
 
-    private int getIndex (Spinner spinner, String myString){
+    private int getIndex(Spinner spinner, String myString) {
         for (int i = 0; i < spinner.getCount(); i++) {
             if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)) {
                 return i;

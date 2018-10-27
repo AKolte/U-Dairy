@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Payment"
+    android:background="@drawable/rupeeg"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-    android:background="@drawable/rupeeg">
+    tools:context=".Payment">
 
     <EditText
         android:id="@+id/amount"

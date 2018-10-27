@@ -53,11 +53,14 @@ public class Payment extends AppCompatActivity {
 
     public void popup(String name, String amt) {
         ExampleDialog exampleDialog = new ExampleDialog();
+        MainActivity mn = new MainActivity();
 
         Bundle b = new Bundle();
         b.putString("name", name);
         b.putString("amt", amt);
         b.putString("cid", String.valueOf(value));
+
+        
         exampleDialog.setArguments(b);
         exampleDialog.show(getSupportFragmentManager(), "Example Dialog");
 

@@ -45,6 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(q, new String[]{});
         c.moveToFirst();
         String total = c.getString(c.getColumnIndex("BAL"));
+        if (total == null)
+            total = "0";
         return total;
     }
 
@@ -71,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (ins == -1) return null;
 
         else {
-            String query = "CREATE TABLE T" + cid + " (Milk text,qty Decimal(4,2),Amount Decimal(7,2))";
+            String query = "CREATE TABLE T" + cid + " (Date Date,Milk text,qty Decimal(4,2),Amount Decimal(7,2))";
 
             db.execSQL(query);
             return true;
@@ -93,14 +95,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return c;
     }
 
-    public Boolean SaleEntry(String cid, String tablename, String milk, String qty) {
+    public Boolean SaleEntry(String Date, String cid, String tablename, String milk, String qty) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        // cv.put("Date",Date);
+        cv.put("Date",Date);
         cv.put("Milk", milk);
         cv.put("qty", qty);
         String amt = getPrice(milk);
+        amt = String.valueOf(Float.valueOf(amt) * Float.valueOf(qty));
         cv.put("Amount", amt);
 
         String tableName = "T" + cid;
@@ -149,22 +152,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE Stock SET Stocks=Stocks-" + qty + " WHERE Name = '" + milk + "'";
         db.execSQL(query);
-
     }
 
     public void addStock(String milk, String qty) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE Stock SET Stocks=Stocks+" + qty + " WHERE Name = '" + milk + "'";
         db.execSQL(query);
-
     }
 
     public String getPrice(String Milk) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT Price FROM Stock WHERE Name = '"+Milk+"'";
-        Cursor c = db. rawQuery(query,new String[]{});
+        String query = "SELECT Price FROM Stock WHERE Name = '" + Milk + "'";
+        Cursor c = db.rawQuery(query, new String[]{});
         c.moveToFirst();
-        return  c.getString(c.getColumnIndex("Price"));
+        return c.getString(c.getColumnIndex("Price"));
 
+    }
+
+    public void setPrice(String milk, String Price) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE Stock SET Price = " + Price + " WHERE Name = '" + milk + "'";
+        db.execSQL(query);
     }
 }

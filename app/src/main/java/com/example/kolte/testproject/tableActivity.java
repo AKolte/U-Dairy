@@ -92,7 +92,7 @@ public class tableActivity extends Activity {
             tableRow.addView(milk);
             tableRow.addView(qty);
             tableRow.addView(amt);
-          // tableRow.addView(milk);
+            // tableRow.addView(milk);
 
             //tableLayout.setGravity();
             tableLayout.addView(tableRow);

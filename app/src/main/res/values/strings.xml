@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestProject</string>
+    <string name="app_name">Udairy</string>
 
     <string-array name="Milk_brands">
         <item>Gokul</item>

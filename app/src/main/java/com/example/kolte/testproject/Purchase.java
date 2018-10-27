@@ -16,10 +16,12 @@ public class Purchase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase);
-         final EditText cid = (EditText) findViewById(R.id.cid);
-        final Button find =  (Button) findViewById(R.id.FindPurchase);
-       final TextView disp = (TextView) findViewById(R.id.Disp);
-       final TextView total = (TextView) findViewById(R.id.total);
+        final EditText cid = (EditText) findViewById(R.id.cid);
+        final Button find = (Button) findViewById(R.id.FindPurchase);
+        final TextView milkT = (TextView) findViewById(R.id.milk);
+        final TextView qtyT = (TextView) findViewById(R.id.qty);
+        final TextView amtT = (TextView) findViewById(R.id.tot);
+        final TextView dateT = (TextView) findViewById(R.id.date);
         final DatabaseHelper db = new DatabaseHelper(this);
 
 
@@ -28,42 +30,48 @@ public class Purchase extends AppCompatActivity {
             public void onClick(View v) {
 
                 Cursor c = db.findCustomer(cid.getText().toString());
-                Integer nameInd, amtInd, milkInd, qtyInd,balInd;
+                Integer nameInd, amtInd, milkInd, qtyInd, dateInd;
                 nameInd = c.getColumnIndex("cname");
 
 
                 if (c.getCount() > 0) {
                     c.moveToFirst();
-                    String tablename= "T"+cid.getText().toString();
+                    String tablename = "T" + cid.getText().toString();
                     Cursor purCursor = db.PurchaseTable(tablename);
 
-                    Float tot=  db.total(cid.getText().toString());
-                    total.setText(tot.toString());
 
-                    if(purCursor.getCount()>0){
+                    if (purCursor.getCount() > 0) {
                         milkInd = purCursor.getColumnIndex("Milk");
                         qtyInd = purCursor.getColumnIndex("qty");
                         amtInd = purCursor.getColumnIndex("Amount");
+                        dateInd = purCursor.getColumnIndex("Date");
 
-                        String PurTable="";
-
-
+                        String milkC = "Milk\n";
+                        String QuantityC = "Quantity\n";
+                        String PriceC = "Price\n";
+                        String DateC = "Date\n";
 
                         for (purCursor.moveToFirst(); !purCursor.isAfterLast(); purCursor.moveToNext()) {
-                             PurTable=PurTable+purCursor.getString(milkInd) + " " + purCursor.getString(qtyInd) + " " + purCursor.getString(amtInd)+"\n";
+
+                            milkC = milkC + "\n" + purCursor.getString(milkInd);
+                            DateC = DateC + "\n" + purCursor.getString(dateInd);
+                            QuantityC = QuantityC + "\n" + purCursor.getString(qtyInd);
+                            PriceC =PriceC +"\n" + purCursor.getString(amtInd);
+
                         }
+                        milkT.setText(milkC);
+                        qtyT.setText(QuantityC);
+                        amtT.setText(PriceC);
+                        dateT.setText(DateC);
 
-                        disp.setText(PurTable);
+                        //disp.setText(PurTable);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Something went wrong :(", Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(getApplicationContext(),"Something went wrong :(",Toast.LENGTH_SHORT).show();
-                    }
-                }
+                } else
+                    Toast.makeText(getApplicationContext(), "No Customer Found :(", Toast.LENGTH_SHORT).show();
 
-                else
-                    Toast.makeText(getApplicationContext(),"No Customer Found :(",Toast.LENGTH_SHORT).show();
-
-                }
+            }
         });
 
 

@@ -15,16 +15,17 @@ import android.widget.Toast;
 
 import com.example.kolte.testproject.R;
 
-public class ExampleDialog extends AppCompatDialogFragment{
-    String name,amt,cid;
-    DatabaseHelper db;;
+public class ExampleDialog extends AppCompatDialogFragment {
+    String name, amt, cid;
+    DatabaseHelper db;
+
 
     @Override
-    public void onCreate( Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         name = getArguments().getString("name");
-         amt = getArguments().getString("amt");
-         cid = getArguments().getString("cid");
+        name = getArguments().getString("name");
+        amt = getArguments().getString("amt");
+        cid = getArguments().getString("cid");
     }
 
     private TextView tv;
@@ -35,7 +36,7 @@ public class ExampleDialog extends AppCompatDialogFragment{
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_dialog,null);
+        View view = inflater.inflate(R.layout.layout_dialog, null);
 
         builder.setView(view)
                 .setTitle("Confirm Payment")
@@ -48,17 +49,17 @@ public class ExampleDialog extends AppCompatDialogFragment{
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                         db = new DatabaseHelper(getActivity());
-                        db.addPayment(cid,amt);
-                        Toast.makeText(getActivity(),"Payment Sucessful!",Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getActivity(),MainActivity.class);
+                        db = new DatabaseHelper(getActivity());
+                        db.addPayment(cid, amt);
+                        Toast.makeText(getActivity(), "Payment Sucessful!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getActivity(), MainActivity.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                     }
                 });
 
         tv = view.findViewById(R.id.message);
-        String msg = "Are you sure to make a payment of ₹ "+ amt + " for " +name+" ?";
+        String msg = "Are you sure to make a payment of ₹ " + amt + " for " + name + " ?";
         tv.setText(msg);
 
         return builder.create();
